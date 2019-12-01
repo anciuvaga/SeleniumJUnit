@@ -1,4 +1,4 @@
-package com.myproject.application.selenium;
+package com.myproject.application.task1_selenium;
 
 /**
  * Hello world!
