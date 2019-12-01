@@ -1,4 +1,4 @@
-package com.myproject.application;
+package com.myproject.application.selenium;
 
 /**
  * Hello world!
