@@ -1,7 +1,9 @@
 package com.myproject.application.task1_selenium;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+        import cucumber.api.java.After;
+        import cucumber.api.java.Before;
+
+        import static com.myproject.application.task1_selenium.OpencartPage.removeCartItems;
 
 public class BeforeAndAfter {
     @Before

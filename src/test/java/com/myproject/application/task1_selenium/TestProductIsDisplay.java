@@ -1,26 +1,32 @@
 package com.myproject.application.task1_selenium;
 
-import com.myproject.application.task1_selenium.OpencartPage;
+import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.jupiter.api.AfterEach;
+
+import java.util.List;
+
+import static junit.framework.Assert.assertFalse;
 
 public class TestProductIsDisplay {
     OpencartPage opencartPage;
 
     @Given("^User is on the OpenCart page$")
-    public void loginOnOpencart() throws Exception {
+    public void getOnOpencartWebsite() throws Exception {
         opencartPage = new OpencartPage();
         opencartPage.initialisePage();
     }
 
     @When("^Login on OpenCart$")
-    public void loginOnOpenCarts() throws Exception {
+    public void loginOnOpenCart(DataTable dt) throws Exception {
+        List<String> testCredentials = dt.asList(String.class);
         opencartPage.myAccountClick();
         opencartPage.myAccountLogin();
-        opencartPage.setEmail();
-        opencartPage.setPassword();
+        opencartPage.setEmail(testCredentials.get(0));
+        opencartPage.setPassword(testCredentials.get(1));
         opencartPage.loginSubmit();
     }
 
@@ -31,10 +37,46 @@ public class TestProductIsDisplay {
         opencartPage.addToCart();
     }
 
-    @Then("^Check product is in cart$")
-    public void checkProductIsInCart() {
+    @And("^Add another product$")
+    public void addAnotherProduct() throws Exception {
+        opencartPage.selectPhonesPDAsCategory();
+        opencartPage.selectIphone();
+        opencartPage.addToCart();
+    }
+
+    @And("^Go to ShoppingCart$")
+    public void goToShoppingCart() {
         opencartPage.getShoppingCart();
+    }
+
+    @Then("^Product added is displayed in the cart$")
+    public void checkProductIsInCart() {
         opencartPage.selectedProductDisplayedShoppingCart();
     }
+
+    @When("^Remove the product from cart$")
+    public void removeCartItems() {
+        opencartPage.removeCartItems();
+
+    }
+
+    @Then("^Shoppingcart is empty$")
+    public void shoppingCartIsEmpty() throws Exception {
+        opencartPage.shoppingCartTotal();
+        opencartPage.verifyIfCartIsEmpty();
+    }
+
+    @Then("^Items added are displayed in the cart$")
+    public void viewShoppingCartTotal(){
+        opencartPage.getShoppingCart();
+        opencartPage.selectedItemsDisplayedShoppingCart();
+    }
+
+    @Then("^Validate that removed item is missing from shopping cart$")
+    public void valideRemovedItem(){
+        opencartPage.valideRemovedItem();
+    }
+
+
 
 }
