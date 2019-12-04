@@ -1,6 +1,7 @@
 package com.myproject.application.task1_selenium;
 
 import cucumber.api.java.After;
+import org.junit.Before;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -16,16 +17,12 @@ public class OpencartPage {
 
     private static final String URL = "https://demo.opencart.com";
 
+    @Before
     public static void initialisePage() {
         Driver.getDriver().get(URL);
         PageFactory.initElements(Driver.getDriver(), OpencartPage.class);
     }
 
-    @After
-    public void after() throws Exception {
-        Thread.sleep(5000);
-        Driver.getDriver().quit();
-    }
 
     /**
      * Find all elements by Xpath
@@ -79,7 +76,6 @@ public class OpencartPage {
     @FindBy(xpath = "//body//div[@class='row']//div[@class='row']//div[2]//div[1]//div[1]//a[1]//img[1]")
     private static WebElement selectIphone;
 
- //   @FindBy(xpath = "")
 
     /**
      * Actions on OpencartPage
@@ -134,7 +130,7 @@ public class OpencartPage {
     public static void verifyIfCartIsEmpty() {
         assertTrue(emptyShoppingCart.isDisplayed());
     }
-    public static void valideRemovedItem() {
+    public static void validateRemovedItem() {
         assertFalse(SamsungGalaxyTabDisplayedInShoppingCart.isDisplayed() && !IphoneDisplayedInShoppingCart.isDisplayed());
     }
     public static void selectPhonesPDAsCategory() {

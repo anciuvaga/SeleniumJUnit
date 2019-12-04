@@ -5,13 +5,12 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.jupiter.api.AfterEach;
 
 import java.util.List;
 
 import static junit.framework.Assert.assertFalse;
 
-public class TestProductIsDisplay {
+public class OrderProductsStepDefinitions {
     OpencartPage opencartPage;
 
     @Given("^User is on the OpenCart page$")
@@ -74,9 +73,6 @@ public class TestProductIsDisplay {
 
     @Then("^Validate that removed item is missing from shopping cart$")
     public void valideRemovedItem(){
-        opencartPage.valideRemovedItem();
+        opencartPage.validateRemovedItem();
     }
-
-
-
 }

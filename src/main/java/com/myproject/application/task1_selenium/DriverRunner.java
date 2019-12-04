@@ -1,16 +1,15 @@
 package com.myproject.application.task1_selenium;
 
-        import cucumber.api.java.After;
-        import cucumber.api.java.Before;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 
-        import static com.myproject.application.task1_selenium.OpencartPage.removeCartItems;
+import static com.myproject.application.task1_selenium.OpencartPage.removeCartItems;
 
-public class BeforeAndAfter {
+public class DriverRunner {
     @Before
     public void before() {
         Driver.driverStart();
     }
-
 
     @After
     public void after() throws Exception {
